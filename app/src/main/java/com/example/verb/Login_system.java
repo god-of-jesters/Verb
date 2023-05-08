@@ -12,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.example.verb.databinding.ActivityMainBinding;
 import com.example.verb.databinding.FragmentLoginSystemBinding;
 
 
@@ -28,20 +28,26 @@ public class Login_system extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLoginSystemBinding.inflate(inflater, container, false);
-        binding.login.setOnClickListener(new View.OnClickListener() {
+
+        binding.loginBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println(binding.editTextText.getText().toString());
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                Intent intent = new Intent(getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
         return inflater.inflate(R.layout.fragment_login_system, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        Button l = (Button) view.findViewById(R.id.loginBut);
+        l.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
