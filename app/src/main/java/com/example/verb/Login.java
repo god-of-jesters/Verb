@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Login extends AppCompatActivity {
+import com.example.verb.DB.Data;
+import com.example.verb.ui.gallery.FriendsFragment;
 
+public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Thread thread = new Thread(new Data());
+        thread.start();
 
         Button login = findViewById(R.id.button4);
         Button sing_up_bt = findViewById(R.id.button5);

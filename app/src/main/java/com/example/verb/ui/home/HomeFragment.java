@@ -1,6 +1,6 @@
 package com.example.verb.ui.home;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.verb.Action1;
+import com.example.verb.MainActivity;
 import com.example.verb.R;
 import com.example.verb.Solution;
 import com.example.verb.databinding.FragmentHomeBinding;
-
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -57,10 +57,11 @@ public class HomeFragment extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String style = (String) spinner1.getSelectedItem();
-                String operation = (String) spinner2.getSelectedItem();
-                int difficulty = Integer.valueOf((String) spinner3.getSelectedItem());
-                System.out.println(solution.getTask(operation, difficulty));
+                Intent intent = new Intent(getContext(), Action1.class);
+                intent.putExtra("style", (String) spinner1.getSelectedItem());
+                intent.putExtra("operation", (String) spinner2.getSelectedItem());
+                intent.putExtra("difficulty", (String) spinner3.getSelectedItem());
+                startActivity(intent);
             }
         });
 

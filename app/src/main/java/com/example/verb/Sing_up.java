@@ -2,13 +2,30 @@ package com.example.verb;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.verb.DB.RetrofitUserServ;
+import com.example.verb.DB.User;
+import com.example.verb.databinding.FragmentFriendsBinding;
+import com.example.verb.databinding.FragmentSingUpBinding;
+
+import java.util.EnumSet;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Sing_up extends Fragment {
+    FragmentSingUpBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,7 +35,35 @@ public class Sing_up extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sing_up, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Button button = view.findViewById(R.id.button2);
+        EditText name = view.findViewById(R.id.editTextText);
+        EditText pas = view.findViewById(R.id.editTextText2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("zdfbnjilmopnjlmdpfvbmoopdfbm");
+                regestrated(name.getText().toString(), pas.getText().toString());
+            }
+        });
+    }
+
+    public void regestrated(String name, String passsword){
+
+        RetrofitUserServ.getInstance().add(new User(0, name, passsword, 0)).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.d("СОЗДААААААААЛ", "СОЗДААААААААЛ");
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("НЕЕЕЕЕЕЕ СОЗДААААААААЛ", "НЕЕЕЕЕЕЕ СОЗДААААААААЛ");
+            }
+        });
     }
 }
