@@ -42,6 +42,7 @@ public class Login_system extends Fragment {
             @Override
             public void onClick(View v) {
                 String n = name.getText().toString();
+                System.out.println(Data.names.keySet());
                 if(Data.names.keySet().contains(n) && Data.names.get(n).equals(pas.getText().toString())){
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     startActivity(intent);

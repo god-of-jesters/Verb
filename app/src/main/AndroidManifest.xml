@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Verb"
         android:usesCleartextTraffic="true"
+        android:screenOrientation="portrait"
         tools:targetApi="31">
+
         <activity
             android:name=".Action1"
             android:exported="false" />
