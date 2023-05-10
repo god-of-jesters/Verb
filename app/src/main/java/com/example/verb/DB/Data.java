@@ -49,9 +49,10 @@ public class Data implements Runnable {
     public void writeData(Response<List<User>> response){
         assert response.body() != null;
         for(User user: response.body()){
-            ids.add(user.getId());
-            names.put(user.getName(), user.getPassword());
-            System.out.println(ids);
+            if (ids.contains(user.getId())){
+                ids.add(user.getId());
+                names.put(user.getName(), user.getPassword());
+            }
         }
 
     }
